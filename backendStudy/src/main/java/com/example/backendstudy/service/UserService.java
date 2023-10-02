@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor // 생성자를 자동으로 만들고, 자동으로 di로 넣어 준다.
+@RequiredArgsConstructor // 생성자를 자동으로 만들고, 자동으로 depenancy injection로 넣어 준다.
 public class UserService {
     private final UserRepository userRepository; //final
 
@@ -31,7 +31,13 @@ public class UserService {
         return userRepository.save(newUser); // save 하는 순간 자동으로 date가 들어간다.
     }
 
-    @Transactional(rollbackOn = Exception.class)
+    // 숙제 : List<User> getUsersByNameContains(String name);
+    public List<User> GetUserList(String name)
+    {
+        return userRepository.getUsersByNameContains(name);
+    }
+
+    @Transactional(rollbackOn = Exception.class) // 실패시 rollback수행
     public boolean UpdateUserNameById(Long id, String name){
         return userRepository.updateUserNameById(id, name) == 1;
     }

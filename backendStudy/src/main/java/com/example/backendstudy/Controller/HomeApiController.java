@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -65,7 +67,7 @@ public class HomeApiController {
                 {
                     User user =result.get();
                     String name = user.getName();
-                    return new ResponseEntity<>(HttpStatus.OK);
+                    return new ResponseEntity<>(name, HttpStatus.OK);
                 }
                 else {
                     return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -136,12 +138,35 @@ public class HomeApiController {
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }else{
                 userService.DeleteUserById(id);
-                return  new ResponseEntity<>(HttpStatus.OK);
+                return new ResponseEntity<>(HttpStatus.OK);
             }
         }
         catch (Exception e)
         {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    // 숙제
+    @GetMapping("/homework/{name}")
+    public ResponseEntity<List<User>> GetNameList(@PathVariable("name") String name)
+    {
+        try
+        {
+            if(name == null)
+            {
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
+            else
+            {
+                List<User> nameList = userService.GetUserList(name);
+                return new ResponseEntity<>(nameList, HttpStatus.OK);
+            }
+        }
+        catch (Exception e)
+        {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
     }
 }

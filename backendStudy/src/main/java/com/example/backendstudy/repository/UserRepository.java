@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface UserRepository extends JpaRepository<User, Long> {
+    // JpaRepository<User, Long> => User는 EF / Long은 id의 Key type
 
     List<User> getUsersByNameContains(String name);
 
