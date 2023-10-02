@@ -148,8 +148,8 @@ public class HomeApiController {
     }
 
     // 숙제
-    @GetMapping("/homework/{name}")
-    public ResponseEntity<List<User>> GetNameList(@PathVariable("name") String name)
+    @GetMapping("/get_user_list_by_name/{name}")
+    public ResponseEntity<List<User>> GetUserListByName(@PathVariable("name") String name)
     {
         try
         {
@@ -159,7 +159,7 @@ public class HomeApiController {
             }
             else
             {
-                List<User> nameList = userService.GetUserList(name);
+                List<User> nameList = userService.GetUserListByNameKeyword(name);
                 return new ResponseEntity<>(nameList, HttpStatus.OK);
             }
         }

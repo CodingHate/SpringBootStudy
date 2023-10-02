@@ -31,12 +31,6 @@ public class UserService {
         return userRepository.save(newUser); // save 하는 순간 자동으로 date가 들어간다.
     }
 
-    // 숙제 : List<User> getUsersByNameContains(String name);
-    public List<User> GetUserList(String name)
-    {
-        return userRepository.getUsersByNameContains(name);
-    }
-
     @Transactional(rollbackOn = Exception.class) // 실패시 rollback수행
     public boolean UpdateUserNameById(Long id, String name){
         return userRepository.updateUserNameById(id, name) == 1;
