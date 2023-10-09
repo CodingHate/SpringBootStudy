@@ -5,7 +5,10 @@ import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.sql.Array;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data // lombok
@@ -25,6 +28,12 @@ public class User {
 
     @Column(nullable = false)
     private String email;
+
+    @Column(nullable = false)
+    private String password;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<UserPermission> permissions = new ArrayList<>();
 
 //    @Column(nullable = true)
 //    @CreatedDate

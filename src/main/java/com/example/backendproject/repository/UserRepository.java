@@ -1,6 +1,7 @@
 package com.example.backendproject.repository;
 
 import com.example.backendproject.entity.User;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -15,6 +16,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     Boolean existsByEmail(String email);
 
+    @EntityGraph(attributePaths = {"permissions"})
+    @Query("select u from User u where u.email = :email")
     Optional<User> getUsersByEmail(String email);
 
     List<User> getUsersByNameContains(String name);

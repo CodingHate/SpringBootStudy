@@ -6,6 +6,7 @@ import com.example.backendproject.repository.UserRepository;
 import com.example.backendproject.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,6 +19,7 @@ public class UserApiController {
 
     private final UserService userService;
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @PostMapping("/create")
     public ResponseEntity<User> create(@RequestBody CreateUserRequest request)
@@ -28,11 +30,19 @@ public class UserApiController {
                 request.getAge() != null &&
                 request.getName() != null &&
                 request.getEmail() != null &&
+                request.getPassword()!=null&&
                 request.getAge() >= 0 &&
                 !request.getName().isBlank() &&
-                !request.getEmail().isBlank())
+                !request.getEmail().isBlank()&&
+                    !request.getPassword().isBlank()
+            )
             {
-                User newUser = userService.create(request.getName(), request.getAge(), request.getEmail());
+                User newUser = userService.create(
+                        request.getName(),
+                        request.getAge(),
+                        request.getEmail(),
+                        passwordEncoder.encode(request.getPassword()));
+
                 return ResponseEntity.ok(newUser);
             }
             else
