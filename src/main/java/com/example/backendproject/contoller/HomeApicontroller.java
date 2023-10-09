@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Optional;
 
-@RestController
+@RestController // 해당 클래스가 RESTful 웹 서비스의 컨트롤러임을 나타낸다. http요청과 응답을 수행한다.
 @RequestMapping("/api/home")
-@RequiredArgsConstructor
+@RequiredArgsConstructor  // 생성자를 자동으로 생성 해준다.
 public class HomeApicontroller {
 
     private final UserRepository userRepository;

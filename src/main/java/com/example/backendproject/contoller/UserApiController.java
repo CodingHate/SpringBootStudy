@@ -14,7 +14,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/user")
-@RequiredArgsConstructor
+@RequiredArgsConstructor // 자동 생성
 public class UserApiController {
 
     private final UserService userService;

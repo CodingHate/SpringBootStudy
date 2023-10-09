@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Setter
 @Getter
 @Table(name ="user_permissions")
-@EntityListeners(AuditingEntityListener.class)
+@EntityListeners(AuditingEntityListener.class) // 바뀌는 사항에 대해 자동으로 적용
 public class UserPermission {
 
     @Id
