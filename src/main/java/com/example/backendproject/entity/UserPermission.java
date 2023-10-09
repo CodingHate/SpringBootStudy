@@ -23,7 +23,7 @@ public class UserPermission {
     @Column(nullable = false)
     private String permission;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER) // user는 여러개의 permission을 가질 수 있다.
     @JoinColumn(name = "user_id")
     private User user;
 
