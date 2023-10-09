@@ -3,7 +3,6 @@ package com.example.backendproject.security.jwt;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
-
 import java.util.Date;
 
 public class JwtUtils {
@@ -18,6 +17,8 @@ public class JwtUtils {
     // JWT TOKEN 발급
     public static String createToken(String email)
     {
+        // Claim = Jwt Token에 들어갈 정보
+        // Claim loginId를 넣어 줌으로써 나중에 loginId를 꺼낼 수 있음
         Claims claims = Jwts.claims();
         claims.put(EMAIL_KEY,email);
 
@@ -33,6 +34,7 @@ public class JwtUtils {
 
     }
 
+    // Claims에서 loginId 꺼내기
     public static String getEmail(String token)
     {
         return Jwts.parserBuilder()
@@ -43,6 +45,7 @@ public class JwtUtils {
                 .get(EMAIL_KEY, String.class);
     }
 
+    //발급 된 Token이 만료 시간이 지났는지 체크
     public static boolean isExpired(String token)
     {
         Date expireDate = Jwts.parserBuilder()
