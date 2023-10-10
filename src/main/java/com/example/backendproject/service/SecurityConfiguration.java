@@ -19,6 +19,7 @@ public class SecurityConfiguration {
 
     private final UserService userService;
 
+    // request인 경우 무조건 들어와서 수용한다;
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
 
@@ -40,9 +41,9 @@ public class SecurityConfiguration {
                                 .requestMatchers(
                                 HttpMethod.POST,
                                 "/api/user/create",
-                                "/api/home/get-token").permitAll()
+                                "/api/home/get-token").permitAll() // token이 안되어 있더라도 접근이 가능하다.
                                 // 이 이외의 api는 인증된 사용자만 접근 가능
-                        .anyRequest().authenticated()) // 뭐든지 허용되는 옵션
+                        .anyRequest().authenticated()) // 나머지 리퀘스트는 인가 되어 있으면 허용
                         //.anyRequest().hasRole("ROLE"))
                 // 세션 관리 정책을 결정함.
                 // 현재는 세션을 아에 비활성화 시킴. (JWT를 사용할 것이기 때문)
