@@ -13,7 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-@Configuration // q: @Service로 하고 bean을 삭제 할 수 있을까?
+@Configuration // q: @Service로 하고 bean을 삭제 할 수 있을까? -> 안되네
 @RequiredArgsConstructor
 public class SecurityConfiguration {
 
@@ -23,7 +23,7 @@ public class SecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
 
         // configuration
-        //        Object httpMethod;
+        // Object httpMethod;
         http
                 // Cross-Site Request Forgery 웹사이트에 로그인한 사용자가 의도하지 않으 ㄴ요청을 통해 공격하는 것을 방지, 토큰 이용
                 // (예, A라는 사이트에 로그인 했는데 같은 클라이언트의 B라는 사이트에서 A에 로그인 한 정보로 request 공격을 날리는 경우에 사용)

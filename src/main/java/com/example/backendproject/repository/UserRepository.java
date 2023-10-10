@@ -16,7 +16,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     Boolean existsByEmail(String email);
 
-    @EntityGraph(attributePaths = {"permissions"})
+    @EntityGraph(attributePaths = {"permissions"}) // permission 정보까지 join해서 가져오기 위함
     @Query("select u from User u where u.email = :email")
     Optional<User> getUsersByEmail(String email);
 

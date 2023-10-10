@@ -4,7 +4,7 @@ import org.springframework.security.core.GrantedAuthority;
 
 public class PermisionAuthority implements GrantedAuthority {
 
-    // GrantedAuthority 이 인스턴스라서 생성해서 적용해야 한다.
+    // GrantedAuthority이 인스턴스(인터페이스)라서 생성해서 적용해야 한다.
     private final String permission;
 
     public PermisionAuthority(String permission)

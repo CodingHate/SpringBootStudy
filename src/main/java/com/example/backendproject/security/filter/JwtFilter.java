@@ -67,8 +67,9 @@ public class JwtFilter extends OncePerRequestFilter {
 
             authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 
-            // 권한 부여
+            // 권한 부여 / USernamePAsswordAuthenticationFilter에 전달
             SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+            // USernamePasswordAuthenticationFilter는 위 권한 토큰이 있는지 확인한다.
         }
         catch (Exception ignored)
         {
