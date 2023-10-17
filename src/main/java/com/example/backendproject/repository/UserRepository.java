@@ -18,7 +18,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     @EntityGraph(attributePaths = {"permissions"}) // permission 정보까지 join해서 가져오기 위함
     @Query("select u from User u where u.email = :email")
-    Optional<User> getUsersByEmail(String email);
+    Optional<User> getUserByEmail(String email);
 
     List<User> getUsersByNameContains(String name);
 
@@ -27,4 +27,5 @@ public interface UserRepository extends JpaRepository<User, Long> {
     int updateName(Long id, String newName);
 
     int deleteByNameContains(String name);
+
 }

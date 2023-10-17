@@ -42,7 +42,7 @@ public class UserService {
     @Transactional(rollbackOn = Exception.class)
     public User getUserByEmail(String email)
     {
-        return userRepository.getUsersByEmail(email).orElseThrow(() -> new RuntimeException("User not found"));
+        return userRepository.getUserByEmail(email).orElseThrow(() -> new RuntimeException("User not found"));
     }
 
     @Transactional(rollbackOn = Exception.class)

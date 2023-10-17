@@ -65,7 +65,7 @@ public class UserApiController {
         }
         else
         {
-            Optional<User> result = userRepository.getUsersByEmail(email);
+            Optional<User> result = userRepository.getUserByEmail(email);
 
             if (result.isPresent())
             {
