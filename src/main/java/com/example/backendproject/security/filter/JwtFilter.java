@@ -46,6 +46,16 @@ public class JwtFilter extends OncePerRequestFilter {
             return;
         }
 
+        if(JwtUtils.isRefreshToken(token))
+        {
+            boolean isAllowRequestUrl = request.getRequestURL().toString().endsWith("/api/auth/get-new-access-token");
+
+            if(!isAllowRequestUrl){
+                filterChain.doFilter(request,response);
+                return;
+            }
+        }
+
         try {
             // Jwt에서 email 추출
             String email = JwtUtils.getEmail(token);
