@@ -39,7 +39,7 @@ public class SecurityConfiguration {
                 .addFilterBefore(new JwtFilter(), UsernamePasswordAuthenticationFilter.class)
                 // http 요청에 대한 접근 제어 구성
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(HttpMethod.POST, "/api/user/create", "/api/home/login").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/user/create", "/api/auth/login").permitAll()
                         // 그 이외의 api는 인증된 사용자만 접근 가능
                         .anyRequest().authenticated())
                 // 세션 관리 정책을 결정함.
